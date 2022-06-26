@@ -12,8 +12,7 @@ def listaatual(listai):
 
 
 def checkwin(lista, esc, pc):
-    if f'({esc})' == lista[0] == lista[1] == lista[2] or f'({esc})' == lista[3] == lista[4] == lista[5] or f'({esc})' == \
-            lista[7] == lista[7] == lista[8]:
+    if f'({esc})' == lista[0] == lista[1] == lista[2] or f'({esc})' == lista[3] == lista[4] == lista[5] or f'({esc})' == lista[7] == lista[7] == lista[8]:
         resu = 'win'
         onde = 'horizontal'
         return resu, onde
