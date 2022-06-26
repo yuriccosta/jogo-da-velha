@@ -1,4 +1,7 @@
 import funcoes as fv
+
+# Feito por zzAlfa / Versão 1.0
+
 inicial = ['( )', '( )', '( )',
            '( )', '( )', '( )',
            '( )', '( )', '( )'
