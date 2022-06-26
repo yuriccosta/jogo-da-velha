@@ -113,7 +113,7 @@ elif modo == 'local':
     play = int(input(f'O player {choice} começa!!! Escolha onde irá jogar: '))
     fv.play(inicial, play, choice)
     fv.listaatual(inicial)
-    play = int(input(f'O player {sec} começa!!! Escolha onde irá jogar: '))
+    play = int(input(f'Vez do jogador {sec}!!! Escolha onde irá jogar: '))
     fv.play(inicial, play, sec)
     fv.listaatual(inicial)
     while True:
