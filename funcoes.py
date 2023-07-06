@@ -22,9 +22,9 @@ def printlista(listai):
 # Função para checar se alguém venceu (Compara se o playerOne venceu em relação ao playerTwo)
 def checkwin(lista, player1, player2):
     if f'({player1})' == lista[0] == lista[1] == lista[2] or f'({player1})' == lista[3] == lista[4] == lista[5] \
-            or f'({player1})' == lista[7] == lista[7] == lista[8]:
+            or f'({player1})' == lista[6] == lista[7] == lista[8]:
         resu = 'win'
-        onde = 'horizontal'
+        onde = 'horizontal' 
         return resu, onde
     elif f'({player1})' == lista[0] == lista[3] == lista[6] or f'({player1})' == lista[1] == lista[4] == lista[7] \
             or f'({player1})' == lista[2] == lista[5] == lista[8]:
@@ -37,7 +37,7 @@ def checkwin(lista, player1, player2):
         return resu, onde
     else:
         if f'({player2})' == lista[0] == lista[1] == lista[2] or f'({player2})' == lista[3] == lista[4] == lista[5] \
-                or f'({player2})' == lista[7] == lista[7] == lista[8]:
+                or f'({player2})' == lista[6] == lista[7] == lista[8]:
             resu = 'lost'
             onde = 'horizontal'
             return resu, onde

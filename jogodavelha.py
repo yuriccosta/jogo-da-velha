@@ -78,7 +78,7 @@ if modo == 'solo':
 else:
     print('\nO JOGO IRÁ COMEÇAR')
     funv.printlista(inicial)
-    print(f'O player {playerOne} começa!!!\n')
+    print(f'O player {playerOne} começa!!!')
     while True:
         # Jogador 1
         play = input(f'Vez do jogador {playerOne}: ')
