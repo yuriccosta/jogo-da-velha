@@ -1,27 +1,29 @@
-import funcoes as fv
+import funcoes as funv
 
-# Feito por zzAlfa / Versão 1.0
+# Feito por zzAlfa / Versão 2.0
 
-inicial = ['( )', '( )', '( )',
-           '( )', '( )', '( )',
-           '( )', '( )', '( )'
+inicial = ['(1)', '(2)', '(3)',
+           '(4)', '(5)', '(6)',
+           '(7)', '(8)', '(9)'
            ]
 print('Bem vindo ao Jogo da Velha')
-fv.listaatual(inicial)
+funv.printlista(inicial)
+# Recebe a escolha do jogador (X ou O) e valida
 while True:
-    choice = input('Qual você escolhe? X ou O ').upper()
-    if choice == 'X':
-        print(f'Você escolheu {choice}')
-        sec = 'O'
+    playerOne = input('Qual você escolhe? X ou O ').upper()
+    if playerOne == 'X':
+        print(f'Você escolheu {playerOne}')
+        playerTwo = 'O'
         break
-    elif choice == 'O':
-        print(f"Você escolheu {choice}")
-        sec = 'X'
+    elif playerOne == 'O':
+        print(f"Você escolheu {playerOne}")
+        playerTwo = 'X'
         break
     else:
         print('Tente novamente, sua escolha não foi válida.')
         print('Tente digitar "X" ou "O"')
         print('')
+# Recebe a escolha do modo de jogo e valida
 while True:
     modo = input('Você irá jogar sozinho ou como outro jogador local? [Solo/Local] ').lower()
     if modo == 'solo':
@@ -34,112 +36,71 @@ while True:
         print('Tente novamente, sua escolha não foi válida.')
         print('Tente digitar "solo" ou "local"')
         print('')
+
+# Modo de jogo solo
 if modo == 'solo':
-    print('')
-    print('O JOGO IRÁ COMEÇAR')
-    fv.listaatual(inicial)
-    if choice == 'X':
-        play = int(input('Você começa!!! Escolha onde irá jogar: '))
-        fv.play(inicial, play, choice)
-        fv.playpc(inicial, sec)
-        fv.listaatual(inicial)
+    print('\nO JOGO IRÁ COMEÇAR')
+    funv.printlista(inicial)
+    if playerOne == 'X':
+        print('Você começa!!!')
         while True:
-            play = int(input('Sua vez!!! Escolha onde jogar novamente: '))
-            fv.play(inicial, play, choice)
-            fv.listaatual(inicial)
-            resultado = fv.checkwin(inicial, choice, sec)
-            if resultado[0] == 'win':
-                print(f'Você venceu!!! O jogador {choice} venceu na {resultado[1]}')
+            play = input('Sua vez!!! Escolha onde irá jogar: ')
+            funv.play(inicial, play, playerOne)
+            funv.printlista(inicial)
+            resultado = funv.checkwin(inicial, playerOne, playerTwo)
+            if resultado != 'continua':
                 break
-            elif resultado[0] == 'lost':
-                print(f'Você perdeu!!! O jogador {sec} venceu na {resultado[1]}')
+            funv.playpc(inicial, playerTwo)
+            funv.printlista(inicial)
+            resultado = funv.checkwin(inicial, playerOne, playerTwo)
+            if resultado != 'continua':
                 break
-            elif resultado == 'O jogo deu Velha':
-                print(f'{resultado}, tente novamente.')
-                break
-            fv.playpc(inicial, sec)
-            fv.listaatual(inicial)
-            resultado = fv.checkwin(inicial, choice, sec)
-            if resultado[0] == 'win':
-                print(f'Você venceu!!! O jogador {choice} venceu na {resultado[1]}')
-                break
-            elif resultado[0] == 'lost':
-                print(f'Você perdeu!!! O jogador {sec} venceu na {resultado[1]}')
-                break
-            elif resultado == 'O jogo deu Velha':
-                print(f'{resultado}, tente novamente.')
-                break
-
     else:
-        print('O computador faz o primeiro lance')
-        fv.playpc(inicial, sec)
-        fv.listaatual(inicial)
-        play = int(input('Sua vez!!! escolha onde irá jogar: '))
-        fv.play(inicial, play, choice)
-        fv.listaatual(inicial)
+        print('O computador começa!!!')
         while True:
+            # Lance do computador
             print('O computador faz um lance: ')
-            fv.playpc(inicial, sec)
-            fv.listaatual(inicial)
-            resultado = fv.checkwin(inicial, choice, sec)
-            if resultado[0] == 'win':
-                print(f'Você venceu!!! O jogador {choice} venceu na {resultado[1]}')
+            funv.playpc(inicial, playerTwo)
+            funv.printlista(inicial)
+            resultado = funv.checkwin(inicial, playerOne, playerTwo)
+            if resultado != 'continua':
                 break
-            elif resultado[0] == 'lost':
-                print(f'Você perdeu!!! O jogador {sec} venceu na {resultado[1]}')
-                break
-            elif resultado == 'O jogo deu Velha':
-                print(f'{resultado}, tente novamente.')
-                break
-            play = int(input('Sua vez!!! Escolha onde jogar novamente: '))
-            fv.play(inicial, play, choice)
-            fv.listaatual(inicial)
-            resultado = fv.checkwin(inicial, choice, sec)
-            if resultado[0] == 'win':
-                print(f'Você venceu!!! O jogador {choice} venceu na {resultado[1]}')
-                break
-            elif resultado[0] == 'lost':
-                print(f'Você perdeu!!! O jogador {sec} venceu na {resultado[1]}')
-                break
-            elif resultado == 'O jogo deu Velha':
-                print(f'{resultado}, tente novamente.')
+            # Lance do jogador
+            play = input('Sua vez!!! escolha onde irá jogar: ')
+            funv.play(inicial, play, playerOne)
+            funv.printlista(inicial)
+            resultado = funv.checkwin(inicial, playerOne, playerTwo)
+            if resultado != 'continua':
                 break
 
 
-elif modo == 'local':
-    print('')
-    print('O JOGO IRÁ COMEÇAR')
-    fv.listaatual(inicial)
-    play = int(input(f'O player {choice} começa!!! Escolha onde irá jogar: '))
-    fv.play(inicial, play, choice)
-    fv.listaatual(inicial)
-    play = int(input(f'Vez do jogador {sec}!!! Escolha onde irá jogar: '))
-    fv.play(inicial, play, sec)
-    fv.listaatual(inicial)
+# Modo de jogo local
+else:
+    print('\nO JOGO IRÁ COMEÇAR')
+    funv.printlista(inicial)
+    print(f'O player {playerOne} começa!!!\n')
     while True:
-        play = int(input(f'Vez do jogador {choice}!!! Escolha onde jogar novamente: '))
-        fv.play(inicial, play, choice)
-        fv.listaatual(inicial)
-        resultado = fv.checkwin(inicial, choice, sec)
-        if resultado[0] == 'win':
-            print(f'Você venceu!!! O jogador {choice} venceu na {resultado[1]}')
+        # Jogador 1
+        play = input(f'Vez do jogador {playerOne}: ')
+        funv.play(inicial, play, playerOne)
+        funv.printlista(inicial)
+        resultado = funv.checkwin(inicial, playerOne, playerTwo)
+        if resultado != 'continua':
             break
-        elif resultado[0] == 'lost':
-            print(f'Você perdeu!!! O jogador {sec} venceu na {resultado[1]}')
+
+        # Jogador 2
+        play = input(f'Vez do jogador {playerTwo}: ')
+        funv.play(inicial, play, playerTwo)
+        funv.printlista(inicial)
+        resultado = funv.checkwin(inicial, playerOne, playerTwo)
+        if resultado != 'continua':
             break
-        elif resultado == 'O jogo deu Velha':
-            print(f'{resultado}, tente novamente.')
-            break
-        play = int(input(f'Vez do jogador {sec}!!! Escolha onde jogar novamente: '))
-        fv.play(inicial, play, sec)
-        fv.listaatual(inicial)
-        resultado = fv.checkwin(inicial, choice, sec)
-        if resultado[0] == 'win':
-            print(f'Você venceu!!! O jogador {choice} venceu na {resultado[1]}')
-            break
-        elif resultado[0] == 'lost':
-            print(f'Você perdeu!!! O jogador {sec} venceu na {resultado[1]}')
-            break
-        elif resultado == 'O jogo deu Velha':
-            print(f'{resultado}, tente novamente.')
-            break
+
+
+# Mostra o resultado dos jogos
+if resultado[0] == 'win':
+    print(f'O jogador {playerOne} venceu na {resultado[1]}!')
+elif resultado[0] == 'lost':
+    print(f'O jogador {playerTwo} venceu na {resultado[1]}!')
+elif resultado == 'O jogo deu Velha':
+    print(f'{resultado}, tente novamente. :(')
